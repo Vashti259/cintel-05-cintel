@@ -1,0 +1,5 @@
+Python/Shiny
+pip install pandas
+pip install numphy
+pip install shiny 
+pip insall seaborn
