@@ -28,6 +28,7 @@ from faicons import icon_svg
 
 # SET UP THE REACIVE CONTENT
 
+
 # PLANNING: We want to get a fake temperature and
 @reactive.calc()
 def reactive_calc_combined():
@@ -45,11 +46,13 @@ def reactive_calc_combined():
     # Return everything we need
     return latest_dictionary_entry
 
+
 # Use a type hint to make it clear that it's an integer (: int)
 
 UPDATE_INTERVAL_SECS: int = 1
 
 # Initialize a REACTIVE CALC that our display components can call
+
 
 @reactive.calc()
 def reactive_calc_combined():
@@ -131,6 +134,7 @@ def display_time():
     latest_dictionary_entry = reactive_calc_combined()
     return f"{latest_dictionary_entry['timestamp']}"
 
+
 with ui.layout_columns():
     with ui.card():
         ui.card_header("Current Temperature (-18 degrees celsius)")
@@ -152,3 +156,12 @@ temp_deque_A = deque([-16, -18, -15])
 len(temp_deque_A)
 msft_Temperature = deque(maxlen=3)
 print(temp_deque_A)
+
+from shiny.express import input, ui
+
+ui.input_date_range("daterange", "Date range", start="2020-01-01")
+
+
+@render.text
+def value():
+    return f"{input.daterange()[0]} to {input.daterange()[1]}"
