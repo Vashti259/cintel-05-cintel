@@ -95,15 +95,11 @@ ui.page_opts(title="PyShiny Express: Live Data (Basic)", fillable=True)
 # Define the Shiny UI Page layout - Sidebar
 # ------------------------------------------------
 
-# Sidebar is typically used for user interaction/information
-# Note the with statement to create the sidebar followed by a colon
-# Everything in the sidebar is indented consistently
-
 with ui.sidebar(open="open"):
-    ui.h2("Antarctic Explorer", class_="text-center")
+    ui.h2("Vashti's Antarctic Live Data", class_="text-center")
 
     ui.p(
-        "A demonstration of real-time temperature readings in Antarctica.",
+        "A demonstration of real-time changes in temperature readings in Antarctica.",
         class_="text-center",
     )
 
@@ -113,13 +109,13 @@ with ui.sidebar(open="open"):
 
     ui.a(
         "GitHub Source",
-        href="https://github.com/denisecase/cintel-05-cintel-basic",
+        href="https://https://github.com/Vashti259/cintel-05-cintel",
         target="_blank",
     )
 
     ui.a(
         "GitHub App",
-        href="https://denisecase.github.io/cintel-05-cintel-basic/",
+        href="https://https://vashti259.github.io/cintel-05-cintel//",
         target="_blank",
     )
 
