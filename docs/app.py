@@ -1,6 +1,7 @@
 # --------------------------------------------
 # Imports at the top - PyShiny EXPRESS VERSION
 # --------------------------------------------
+# Install.packages("shinythemes")
 
 # From shiny, import just reactive and render
 from shiny import reactive, render
@@ -12,16 +13,15 @@ from shiny.express import ui
 import random
 from datetime import datetime
 
-# Import pandas
-# Import seaborn
-# Import numphy
+# --------------------------------------------
+# Import icons as you like
+# --------------------------------------------
 
 from faicons import icon_svg
 
-# from faicons import fa-tag
+# --------------------------------------------
 # FOR LOCAL DEVELOPMENT
 # --------------------------------------------
-
 # Add all packages not in the Std Library
 # to requirements.txt:
 #
@@ -33,7 +33,7 @@ from faicons import icon_svg
 # --------------------------------------------
 
 # --------------------------------------------
-# SET UP THE REACTIVE CONTENT
+# SET UP THE REACIVE CONTENT
 # --------------------------------------------
 
 # --------------------------------------------
@@ -50,14 +50,14 @@ from faicons import icon_svg
 # Constants are usually defined in uppercase letters
 # Use a type hint to make it clear that it's an integer (: int)
 # --------------------------------------------
-UPDATE_INTERVAL_SECS: int = 1
-# --------------------------------------------
 
+UPDATE_INTERVAL_SECS: int = 1
+
+# --------------------------------------------
 # Initialize a REACTIVE CALC that our display components can call
 # to get the latest data and display it.
 # The calculation is invalidated every UPDATE_INTERVAL_SECS
 # to trigger updates.
-
 # It returns everything needed to display the data.
 # Very easy to expand or modify.
 # (I originally looked at REACTIVE POLL, but this seems to work better.)
@@ -73,8 +73,8 @@ def reactive_calc_combined():
     temp = round(random.uniform(-18, -16), 1)
 
     # Get a timestamp for "now" and use string format strftime() method to format it
+    #
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     latest_dictionary_entry = {"temp": temp, "timestamp": timestamp}
 
     # Return everything we need
@@ -91,10 +91,44 @@ def reactive_calc_combined():
 
 ui.page_opts(title="PyShiny Express: Live Data (Basic)", fillable=True)
 
+# ------------------------------------------------
+# Define the Shiny UI Page layout - Sidebar
+# ------------------------------------------------
+
+# Sidebar is typically used for user interaction/information
+# Note the with statement to create the sidebar followed by a colon
+# Everything in the sidebar is indented consistently
+
+with ui.sidebar(open="open"):
+    ui.h2("Antarctic Explorer", class_="text-center")
+
+    ui.p(
+        "A demonstration of real-time temperature readings in Antarctica.",
+        class_="text-center",
+    )
+
+    ui.hr()
+
+    ui.h6("Links:")
+
+    ui.a(
+        "GitHub Source",
+        href="https://github.com/denisecase/cintel-05-cintel-basic",
+        target="_blank",
+    )
+
+    ui.a(
+        "GitHub App",
+        href="https://denisecase.github.io/cintel-05-cintel-basic/",
+        target="_blank",
+    )
+
+    ui.a("PyShiny", href="https://shiny.posit.co/py/", target="_blank")
+
+
 # ---------------------------------------------------------------------
 # In Shiny Express, everything not in the sidebar is in the main panel
 # ---------------------------------------------------------------------
-
 
 ui.h2("Current Temperature")
 
@@ -107,8 +141,8 @@ def display_temp():
 
 
 ui.p("warmer than usual")
-
 icon_svg("sun")
+
 
 ui.hr()
 
@@ -121,3 +155,13 @@ def display_time():
     latest_dictionary_entry = reactive_calc_combined()
     return f"{latest_dictionary_entry['timestamp']}"
 
+
+with ui.layout_columns():
+    with ui.card():
+        ui.card_header("Current Data (placeholder only)")
+
+with ui.layout_columns():
+    with ui.card():
+        ui.card_header("Current Chart (placeholder only)")
+
+# Install Shiny Themes Package
