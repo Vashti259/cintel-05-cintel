@@ -89,7 +89,7 @@ def reactive_calc_combined():
 # Set title to a string in quotes that will appear at the top
 # Set fillable to True to use the whole page width for the UI
 
-ui.page_opts(title="PyShiny Express: Live Data (Basic)", fillable=True)
+ui.page_opts(title="Antarctica Express: Live Data (Basic)", fillable=True)
 
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Sidebar
@@ -126,7 +126,7 @@ with ui.sidebar(open="open"):
 # In Shiny Express, everything not in the sidebar is in the main panel
 # ---------------------------------------------------------------------
 
-ui.h2("Current Temperature")
+ui.h2("-18 c")
 
 
 @render.text
@@ -154,10 +154,16 @@ def display_time():
 
 with ui.layout_columns():
     with ui.card():
-        ui.card_header("Current Data (placeholder only)")
+        ui.card_header(
+            "Current Temperature (-18 degrees celsius, will remain warmer than usual)"
+        )
 
 with ui.layout_columns():
     with ui.card():
-        ui.card_header("Current Chart (placeholder only)")
+        ui.card_header("Current Numbers in Motion (-15, -17, -16, -18))")
 
 # Install Shiny Themes Package
+from shinyswatch import theme
+from shiny.express import render, ui
+
+theme.darkly()
